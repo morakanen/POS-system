@@ -1,10 +1,9 @@
 doctype html
-html
+html(lang="en")
   head
     title The Cafe
-    link(rel='home', href='home.css')
-    meta(charset='UTF-8')
-    meta(name='viewport', content='width=device-width, initial-scale=1.0')
+    meta(charset="UTF-8")
+    meta(name="viewport", content="width=device-width, initial-scale=1.0")
     // Add any necessary stylesheets and scripts here
   body
     header
@@ -12,37 +11,30 @@ html
       nav
         ul
           li
-            a(href='home.html') Home
+            a(href="home.html") Home
           li
-            a(href='History.html') History
+            a(href="History.html") History
           li
-            a(href='membership.html') Membership
+            a(href="membership.html") Membership
           li
-            a(href='settings.html') Settings
+            a(href="settings.html") Settings
           li
-            a(href='#') LogOut
+            a(href="#") LogOut
     head
       title Search Bar Example
     body
-      form(action='/search', method='get')
-        label(for='search') Search:
-        input(type='search', id='search', name='q', placeholder='Search...')
-        button(type='submit') Go
+      form(action="/search", method="get")
+        label(for="search") Search:
+        input(type="search", id="search", name="q", placeholder="Search...")
+        button(type="submit") Go
     main
-      section
-        h2 Welcome to our Cafe POS System!
-        p We offer a user-friendly and efficient point-of-sale system for your cafe needs.
-        p Our system allows you to easily manage orders, track inventory, and process payments.
-      section
-        // Add your menu items here
-        ul
-          li Item 1
-          li Item 2
-          li Item 3
+    head
+      header
+        h1 Settings
     head
       title Shopping Cart
-      meta(charset='UTF-8')
-      meta(name='viewport', content='width=device-width, initial-scale=1.0')
+      meta(charset="UTF-8")
+      meta(name="viewport", content="width=device-width, initial-scale=1.0")
       // Add any necessary stylesheets and scripts here
     body
       header
@@ -75,31 +67,31 @@ html
                 td $44.97
             tfoot
               tr
-                td(colspan='3') Total:
+                td(colspan="3") Total:
                 td $84.94
         section
           h2 Checkout
           form
-            label(for='name') Name:
-            input(type='text', id='name', name='name', required)
+            label(for="name") Name:
+            input(type="text", id="name", name="name", required)
             br
             br
-            label(for='email') Email:
-            input(type='email', id='email', name='email', required)
+            label(for="email") Email:
+            input(type="email", id="email", name="email", required)
             br
             br
-            label(for='address') Address:
-            input(type='text', id='address', name='address', required)
+            label(for="address") Address:
+            input(type="text", id="address", name="address", required)
             br
             br
-            label(for='payment') Payment method:
+           label(for='payment') Payment method:
 div
   button#credit(name='payment', value='credit') Credit card
   button#debit(name='payment', value='debit') Debit card
   button#paypal(name='payment', value='paypal') PayPal
             br
             br
-            input(type='submit', value='Place Order')
+            input(type="submit", value="Place Order")
       section
         // Add your contact information here
         p 99 Roe Drive
