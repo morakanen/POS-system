@@ -80,10 +80,10 @@ html
             br
             br
             label(for='payment') Payment method:
-div
-  button#credit(name='payment', value='credit') Credit card
-  button#debit(name='payment', value='debit') Debit card
-  button#paypal(name='payment', value='paypal') PayPal
+            select(id='payment', name='payment')
+              option(value='credit') Credit card
+              option(value='debit') Debit card
+              option(value='paypal') PayPal
             br
             br
             input(type='submit', value='Place Order')

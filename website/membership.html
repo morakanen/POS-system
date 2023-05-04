@@ -99,12 +99,10 @@
 				<label for="address">Address:</label>
 				<input type="text" id="address" name="address" required><br><br>
 				<label for="payment">Payment method:</label>
-				<div class="payment-buttons">
-				  <button type="button" class="credit-button">Credit card</button>
-				  <button type="button" class="debit-button">Debit card</button>
-				  <button type="button" class="paypal-button">PayPal</button>
-				</div>
-				<input type="hidden" id="payment" name="payment">
+				<select id="payment" name="payment">
+					<option value="credit">Credit card</option>
+					<option value="debit">Debit card</option>
+					<option value="paypal">PayPal</option>
 				</select><br><br>
 				<input type="submit" value="Place Order">
 			</form>
