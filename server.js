@@ -12,22 +12,21 @@ const fs = require('fs');
 ///// use JSON parser
 const jsonParser = bodyParser.json();
 app.use(bodyParser.urlencoded({extended:false}));
+//set pug as our view engine 
+app.set('view engine', 'pug');
+app.set('views','./website/website_pug')
 
 
 
-
-// runs serfver on port 3000 listening to any calls
+// runs server on port 3000 listening to any calls
 app.listen(port, () => {
-    console.log(`server is listening at http://localhost:5000`)
+    console.log(`server is listening at http://localhost:3000`)
 });
 // route for mainpage
 app.get('/', function (req, res) {
-    res.sendFile('/home.html');
+    res.render('home');
     console.log('homepage');
 });
-//gets the success page upon successfully submitting file
-app.get('/success', function (req, res) {
-    res.redirect('/stayUpdatedSuccess.html');
-})
+
 
 
