@@ -1,0 +1,27 @@
+extends layout
+
+block content
+    link(rel='stylesheet', href='/stylesheets/mainmenu.css')
+    div(class="grid-containter")
+        div(class="basket")
+            - var total = 0
+            ol(type=1) Basket
+                unless (basketinfo == undefined)
+                    for user in basketinfo
+                        li &nbsp; Name: #{user.name} // Price: #{user.price} 
+                        - total += parseFloat(user.price)
+
+
+            h1 total = #{total.toFixed(2)}
+
+            form(action="#" method="post")
+                input(type="submit" value="Clear Basket")
+        div(class="option-grid")
+            <div>
+                form(action="#" method="post")
+                    input(type="submit" name="input" value="fish")
+
+            <div>
+                h1 hello worldd 
+            <div>
+                h1 dsjamkodnasjkdsanasnjmksd

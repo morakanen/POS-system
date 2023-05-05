@@ -1,0 +1,17 @@
+.grid-container {
+
+    display: inline-grid;
+    position: relative;
+      align-content: center;
+}
+.basket {
+    align-content: center;
+    position: absolute;
+    left: 5%;
+}
+
+.option-grid {
+    align-content: center;
+    position: absolute;
+    right: 5%;
+}
