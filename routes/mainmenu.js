@@ -7,24 +7,45 @@ router.get("/", function (req, res, next) {
     var sqlquery = "SELECT * from shoppingbasket";
     connection.query(sqlquery, function (error, basketinfo) {
         if (error) throw error;
-        res.render("mainmenu", { basketinfo });
+        res.render("mainmenu", { basketinfo, hello });
     });
 });
 
 router.post("/", function (req, res, next) {
-    var sql = "INSERT INTO shoppingbasket SELECT * FROM menuitems WHERE name = ?";
     console.log(req.body.input);
-    connection.query(sql, ""+req.body.input, function(error, result){
-        if (error) throw error;
-
-        var sqlquery = "SELECT * from shoppingbasket";
-        connection.query(sqlquery, function (error, basketinfo) {
+    if (req.body.input === "Clear Basket"){
+        var sql = "DELETE FROM shoppingbasket";
+        connection.query(sql, function(error, result){
             if (error) throw error;
-            res.render("mainmenu", { basketinfo });
+            res.render("mainmenu");
         });
-        
-    });
+    } else if (req.body.input === "Undo"){
+        var sql = "delete from shoppingbasket order by shoppingItemId desc limit 1;";
+        connection.query(sql, ""+req.body.input, function(error, result){
+            if (error) throw error;
 
+            var sqlquery = "SELECT * from shoppingbasket";
+            connection.query(sqlquery, function (error, basketinfo) {
+                if (error) throw error;
+                res.render("mainmenu", { basketinfo });
+            });
+        });
+    } 
+    
+    
+    else {
+        var sql = "INSERT INTO shoppingbasket (itemId, name, stock, ageRestricted, price) SELECT * FROM menuitems WHERE name = ?";
+        console.log(req.body.input);
+        connection.query(sql, ""+req.body.input, function(error, result){
+            if (error) throw error;
+
+            var sqlquery = "SELECT * from shoppingbasket";
+            connection.query(sqlquery, function (error, basketinfo) {
+                if (error) throw error;
+                res.render("mainmenu", { basketinfo });
+            });
+        });
+    }
 });
 
 

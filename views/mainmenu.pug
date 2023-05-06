@@ -2,6 +2,8 @@ extends layout
 
 block content
     link(rel='stylesheet', href='/stylesheets/mainmenu.css')
+    script(src="javascripts/mainmenu.js")
+    h1 #{hello};
     div(class="grid-containter")
         div(class="basket")
             - var total = 0
@@ -15,13 +17,12 @@ block content
             h1 total = #{total.toFixed(2)}
 
             form(action="#" method="post")
-                input(type="submit" value="Clear Basket")
-        div(class="option-grid")
-            <div>
-                form(action="#" method="post")
-                    input(type="submit" name="input" value="fish")
-
-            <div>
-                h1 hello worldd 
-            <div>
-                h1 dsjamkodnasjkdsanasnjmksd
+                input(type="submit" name="input" value="Clear Basket")
+            form(action="#" method="post")
+                input(type="submit" name="input" value="Undo")
+        div(class="option-grid" id="options")
+            button(type="button" onclick="food()") Food
+            form(action="#" method="post")
+                input(type="submit" name="input" value="fish")
+            h1 hello worldd 
+            h1 dsjamkodnasjkdsanasnjmksd
