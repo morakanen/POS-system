@@ -1,0 +1,18 @@
+extends layout
+
+block content
+    h1 Modify Discounts
+
+    for product in productInfo
+        li &nbsp; Name: #{product.name} | Price: #{product.price} | two for one: #{Boolean(product.twoForOne)} | percent off: #{product.percentOff}
+        form(action="/changeTwoForOne" method="get")
+           input(type="submit" name="input" value="Change Two for one")
+           input(type="hidden" name="name" value=product.name readonly)
+        form(action="/changePercentOff" method="get")
+            input(type="number" name="percentOff" step=".01" max="100")
+            input(type="hidden" name="name" value=product.name readonly)
+            input(type="submit" name="input" value="Change Percent Off")
+
+
+    form(action="/adminpanel" method="get")
+        input(type="submit" name="input" value="Back to Admin Panel")

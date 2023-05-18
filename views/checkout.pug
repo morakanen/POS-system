@@ -1,19 +1,24 @@
 extends layout
 
 block content
-    div(class="grid-containter")
-        div(class="basket")
-            - var total = 0
-            ol(type=1) Basket
-                unless (basketinfo == undefined)
-                    for user in basketinfo
-                        li &nbsp; Name: #{user.name} // Price: #{user.price} 
-                        - total += parseFloat(user.price)
+    link(rel='stylesheet', href='/stylesheets/mainmenu.css')
 
+    h1 #{checkoutErr}
+    unless flag
+        h1 Total Price = #{totalPrice}
+        h1 Card Payment
+        form(action="/cardPayment" method="post")
+            h3 Please Enter your pin
+            input(type="text" name="input")
+            input(type="submit" name="input" value="Submit Payment")
+        h1 Cash Payment
+        form(action="/cashPayment" method="get")
+            h3 Please Enter how much cash
+            input(type="number" name="cash" step=".01")
+            input(type="submit" name="input" value="pay by cash")
+        form(action="/mainmenu" method="get")
+            input(type="submit" name="input" value="Back to Main Menu")
+    else
+        form(action="/backtomainmenu" method="post")
+            input(type="submit" name="input" value="Back to Main Menu")
 
-            h1 total = #{total.toFixed(2)}
-
-            form(action="#" method="post")
-                input(type="submit" value="Pay by Cash")
-            form(action="#" method="post")
-                input(type="submit" value="Pay by Card")

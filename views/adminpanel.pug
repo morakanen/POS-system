@@ -1,0 +1,31 @@
+extends layout
+
+block content
+    h1 Hello Admin!
+
+    form(action="/discounts" method="get")
+        input(type="submit" name="input" value="Discounts")
+    br
+
+    form(action="/modifyproducts" method="get")
+        input(type="submit" name="input" value="Modify Products")
+    br
+    
+    form(action="/addproduct" method="get")
+        input(type="submit" name="input" value="Add product")
+    br
+
+    form(action="/userupdate" method="get")
+        input(type="submit" name="input" value="Update Users")
+    br
+
+    form(action="/filterproducts" method="get")
+        input(type="submit" name="input" value="Filter Products")
+    br
+
+    form(action="/refunds" method="get")
+        input(type="submit" name="input" value="Refunds")
+    br
+
+    form(action="/mainmenu" method="get")
+        input(type="submit" name="input" value="Back to Main Menu")

@@ -6,12 +6,15 @@ var logger = require('morgan');
 const bodyParser = require('body-parser');
 
 var indexRouter = require('./routes/index');
+<<<<<<< HEAD
 var login = require('./routes/login');
 var user = require('./routes/user');
 var mainmenu = require('./routes/mainmenu');
 var checkout = require('./routes/checkout');
 var products = require('./routes/productview');
 var connection = require('./models/userModel');
+=======
+>>>>>>> 781fb724348283fe8dd5b0a85bdfe686fac13019
 
 var app = express();
 
@@ -31,11 +34,36 @@ app.use(bodyParser.json());
 const jsonParser = bodyParser.json();
 
 app.use('/', indexRouter);
+<<<<<<< HEAD
 app.use('/login', login);
 app.use('/user', user);
 app.use('/mainmenu', mainmenu);
 app.use('/checkout', checkout);
 app.use('/productview', products);
+=======
+app.use('/login', indexRouter);
+app.use('/checkout', indexRouter);
+app.use("/mainmenu", indexRouter);
+app.use("/endOfDay", indexRouter);
+
+//admin
+app.use("/adminpanel", indexRouter);
+
+app.use("/discounts", indexRouter);
+
+app.use("/modifyproducts", indexRouter);
+app.use("/addproduct", indexRouter);
+
+app.use("/userupdate", indexRouter);
+app.use("/adduser", indexRouter);
+
+app.use("/noaccess", indexRouter);
+
+
+
+
+
+>>>>>>> 781fb724348283fe8dd5b0a85bdfe686fac13019
 
 // Handle form submission
 app.post('/submit-form', (req, res) => {

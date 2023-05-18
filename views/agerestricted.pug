@@ -1,0 +1,14 @@
+extends layout
+
+block content
+
+    h1 Is the customer old enough to purchase: #{product}?
+
+    form(action="/addToShopping2" method="get")
+        input(type="submit" name="input" value="Yes")
+        input(type="hidden" name="name" value=product readonly)
+
+    form(action="/mainmenu" method="get")
+        input(type="submit" name="input" value="No")
+        
+

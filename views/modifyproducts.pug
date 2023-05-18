@@ -1,0 +1,33 @@
+extends layout
+
+block content
+    h1 Modify Products
+
+    for product in productInfo
+        li &nbsp; Name: #{product.name} | Price: #{product.price} | Category: #{product.category} | Age Restricted #{Boolean(product.ageRestricted)}
+        form(action="/changeName" method="get")
+            input(type="text" name="percentOff" value="")
+            input(type="submit" name="input" value="Change Name")
+            input(type="hidden" name="name" value=product.name readonly)
+
+        form(action="/changePrice" method="get")
+            input(type="text" name="percentOff" value="")
+            input(type="hidden" name="name" value=product.name readonly)
+            input(type="submit" name="input" value="Change Price")
+
+        form(action="/changeCategory" method="get")
+            select(id="categories" name="percentOff")
+                option(value="Drinks") Drinks
+                option(value="Food") Food
+                option(value="Extras") Extras
+            input(type="hidden" name="name" value=product.name readonly)
+            input(type="submit" name="input" value="Change Category")
+            
+
+        form(action="/changeAgeRestricted" method="get")
+            input(type="hidden" name="name" value=product.name readonly)
+            input(type="submit" name="input" value="Change Age Restriction")
+
+
+    form(action="/adminpanel" method="get")
+        input(type="submit" name="input" value="Back to Admin Panel")

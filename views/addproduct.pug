@@ -1,0 +1,39 @@
+extends layout
+
+block content
+    h1 Add A Product
+    form(action="/addproduct" method="post")
+        label(for="name")
+        input#username(type="text" name="name" placeholder="Product Name" required="" maxlength="30")
+        br
+        
+        select(id="categories" name="categories")
+            option(value="Drinks") Drinks
+            option(value="Food") Food
+            option(value="Extras") Extras
+        br
+
+        input#ageRestricted(type="radio" name="ageRestricted" value="1")
+        label(for="ageRestricted") Age Restricted
+        input#ageRestricted(type="radio" name="ageRestricted" value="0")
+        label(for="ageRestricted") Not Age Restricted
+        br
+
+        input#price(type="number" name="price" placeholder="Price" step=".01" max="100000")
+        br
+
+        input#twoForOne(type="radio" name="twoForOne" value="1")
+        label(for="twoForOne") Two For One
+        input#twoForOne(type="radio" name="twoForOne" value="0")
+        label(for="twoForOne") Not Two For One
+        br
+
+        input#percentOff(type="number" name="percentoff" placeholder="Percent Off" step=".01" max="100")
+        br
+
+
+        input(type="submit" value="Add product")
+    br
+
+    form(action="/adminpanel" method="get")
+        input(type="submit" name="input" value="Back to Admin Panel")

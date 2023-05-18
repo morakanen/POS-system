@@ -1,0 +1,33 @@
+extends layout
+
+block content
+     h1 Update Users
+
+     for user in userInfo
+          li &nbsp; Name: #{user.username} | Admin: #{Boolean(user.adminbool)}
+
+          form(action="/changeUserName" method="get")
+               input(type="text" name="percentOff" value="" maxlength="30")
+               input(type="submit" name="input" value="Change Name")
+               input(type="hidden" name="name" value=user.username readonly)
+
+          form(action="/changeUserPassword" method="get")
+               input(type="text" name="percentOff" value="" maxlength="30")
+               input(type="hidden" name="name" value=user.username readonly)
+               input(type="submit" name="input" value="Change Password")
+
+          form(action="/changeUserAdmin" method="get")
+               input(type="hidden" name="name" value=user.username readonly)
+               input(type="submit" name="input" value="Change Admin Privileges")
+
+          form(action="/removeuser" method="get")
+               input(type="hidden" name="name" value=user.username readonly)
+               input(type="submit" name="input" value="Remove User")
+
+          br
+          br
+     form(action="/adduser" method="get")
+          input(type="submit" name="input" value="Add User")
+
+     form(action="/adminpanel" method="get")
+          input(type="submit" name="input" value="Back to Admin Panel")
