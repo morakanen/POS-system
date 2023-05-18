@@ -1,4 +1,7 @@
 
+
+
+
 foodArray = ["Fish", "Hot Chocolate", "Other cool things"]
 
 function back(){
@@ -32,3 +35,6 @@ function food(){
     form.appendChild(button);
 
 }
+
+
+

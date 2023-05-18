@@ -20,26 +20,48 @@ select * from logininfo;
 
 
 create table menuitems(
-    name VARCHAR(128) PRIMARY KEY,
+	itemId INT NOT NULL AUTO_INCREMENT PRIMARY KEY,
+    name VARCHAR(128),
+    stock INT,
+    ageRestricted BOOLEAN,
     price DECIMAL(10,2)  NOT NULL
+);
+
+create table categories(
+	categoryId INT NOT NULL AUTO_INCREMENT PRIMARY KEY,
+	category VARCHAR(128)
 );
 
 insert into menuitems(name, price) 
 values  ("fish", 2.03),
 		("cheese", 23),
         ("DOG", 0.03);
+        
 create table shoppingbasket(
+	shoppingItemId INT NOT NULL AUTO_INCREMENT PRIMARY KEY,
+    itemId INT NOT NULL,
+    foreign key (itemId) REFERENCES menuitems(itemid),
     name VARCHAR(128),
+	stock INT,
+    ageRestricted BOOLEAN,
     price DECIMAL(10,2)  NOT NULL
 );
 
+create table pastTransactions(
+	transactionID INT NOT NULL AUTO_INCREMENT PRIMARY KEY,
+    price DECIMAL(10, 2) NOT NULL
+);
 
-INSERT INTO shoppingbasket SELECT * FROM menuitems WHERE name = "fish";
+
+INSERT INTO shoppingbasket (itemId, name, stock, ageRestricted, price) SELECT * FROM menuitems WHERE name = "fish";
 
 insert into shoppingbasket(name, price) 
 values  ("DOG", 0.03),  ("Cat", 2.03) , ("hot chocolate", 0.01);
 
 select * from shoppingbasket;
+delete from shoppingbasket order by shoppingItemId desc limit 1;
+
+select * from menuitems;
 
 DELETE FROM shoppingbasket;
 

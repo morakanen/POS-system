@@ -25,4 +25,30 @@ block content
             form(action="#" method="post")
                 input(type="submit" name="input" value="fish")
             h1 hello worldd 
-            h1 dsjamkodnasjkdsanasnjmksd
+    <button id="myButton">Open Form</button>
+        #myModal.modal
+            .modal-content
+                span.close &times;
+                h2 ADD ITEM
+                form#myForm(action='/submit-form' method='POST')
+                    label(for='name') Name:
+                    input#name(type='text' name='name')
+                    br
+                    label(for="stock") Stock: 
+                    input#stock(type="number" name="stock") 
+                    br
+                    label(for="price") Price:
+                    input#price(type=number name="price" step=9999)
+                    br
+                    label(for='agerestricted') Age restricted?:
+                    input#email(type="checkbox" name="ageRestricted" checked )
+                    br
+                    label(for="twoForOne") twoforone
+                    input#twoForOne(type="checkbox" name="twoForOne" checked)
+                    br
+                    label(for="percentOff") percentOff
+                    input#percentOff(type="number" name="percentOff") 
+                    input(type='submit' value='Submit')
+            script(src="javascripts/fetchform.js")
+            
+    

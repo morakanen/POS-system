@@ -3,11 +3,15 @@ const connection = require("../models/userModel");
 var express = require("express")
 var router = express.Router();
 
+
+
+
+
 router.get("/", function (req, res, next) {
     var sqlquery = "SELECT * from shoppingbasket";
     connection.query(sqlquery, function (error, basketinfo) {
         if (error) throw error;
-        res.render("mainmenu", { basketinfo, hello });
+        res.render("mainmenu", { basketinfo });// ahs a hello pa[rameter that wasnt working]
     });
 });
 
@@ -47,6 +51,7 @@ router.post("/", function (req, res, next) {
         });
     }
 });
-
-
 module.exports = router;
+
+
+
