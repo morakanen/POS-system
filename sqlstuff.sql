@@ -88,6 +88,8 @@ create table pastTransactions(
     percentOff int DEFAULT 0
 );
 
+SELECT name, price, COUNT(*) as count FROM pastTransactions GROUP BY name, price order by count;
+SELECT SUM(price) AS totalPrice FROM pastTransactions;
 
 
 SELECT SUM(price) AS totalPrice FROM shoppingbasket;

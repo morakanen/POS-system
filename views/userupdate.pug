@@ -7,12 +7,12 @@ block content
           li &nbsp; Name: #{user.username} | Admin: #{Boolean(user.adminbool)}
 
           form(action="/changeUserName" method="get")
-               input(type="text" name="percentOff" value="")
+               input(type="text" name="percentOff" value="" maxlength="30")
                input(type="submit" name="input" value="Change Name")
                input(type="hidden" name="name" value=user.username readonly)
 
           form(action="/changeUserPassword" method="get")
-               input(type="text" name="percentOff" value="")
+               input(type="text" name="percentOff" value="" maxlength="30")
                input(type="hidden" name="name" value=user.username readonly)
                input(type="submit" name="input" value="Change Password")
 

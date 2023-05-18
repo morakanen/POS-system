@@ -3,7 +3,6 @@ var express = require('express');
 var path = require('path');
 var cookieParser = require('cookie-parser');
 var logger = require('morgan');
-var session = require('express-session')
 
 var indexRouter = require('./routes/index');
 
@@ -23,23 +22,24 @@ app.use('/', indexRouter);
 app.use('/login', indexRouter);
 app.use('/checkout', indexRouter);
 app.use("/mainmenu", indexRouter);
+app.use("/endOfDay", indexRouter);
 
 //admin
 app.use("/adminpanel", indexRouter);
+
+app.use("/discounts", indexRouter);
+
+app.use("/modifyproducts", indexRouter);
+app.use("/addproduct", indexRouter);
 
 app.use("/userupdate", indexRouter);
 app.use("/adduser", indexRouter);
 
 app.use("/noaccess", indexRouter);
 
-app.use("/discounts", indexRouter);
-app.use("/modifyproducts", indexRouter);
 
 
-app.use(session({
-    secret: 'my secret',
-    saveUninitialized: true
-  }));
+
 
 
 // catch 404 and forward to error handler

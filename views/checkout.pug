@@ -16,6 +16,9 @@ block content
             h3 Please Enter how much cash
             input(type="number" name="cash" step=".01")
             input(type="submit" name="input" value="pay by cash")
+        form(action="/mainmenu" method="get")
+            input(type="submit" name="input" value="Back to Main Menu")
     else
         form(action="/backtomainmenu" method="post")
             input(type="submit" name="input" value="Back to Main Menu")
+

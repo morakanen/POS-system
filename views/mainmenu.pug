@@ -15,15 +15,28 @@ block content
 
             form(action="/clearBasket" method="post")
                 input(type="submit" name="input" value="Clear Basket")
+
             form(action="/undo" method="post")
                 input(type="submit" name="input" value="Undo")
+
             form(action="/crazyTransaction" method="get")
-                input(type="text" name="name")
-                input(type="number" name="price" step=".01")
+                input(type="text" name="name" maxlength="30")
+                input(type="number" name="price" step=".01" max="100000")
                 input(type="submit" name="input" value="Submit Un-listed Item")
 
+            br
             form(action="/checkout" method="post")
                 input(type="submit" name="input" value="Payment")
+
+            br
+
+            form(action="/endofday" method="get")
+                input(type="submit" name="input" value="End of Day Summary") 
+
+            form(action="/login" method="get")
+                input(type="submit" name="input" value="Log Out") 
+
+            br
 
             if admin
                 form(action="/adminpanel" method="get")

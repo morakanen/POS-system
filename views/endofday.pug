@@ -1,0 +1,23 @@
+extends layout
+
+block content
+    h1 End of Day Summary
+
+    form(action="/endofdayName" method="get")
+        input(type="submit" name="input" value="Order by name") 
+
+    form(action="/endofdayPrice" method="get")
+        input(type="submit" name="input" value="Order by price") 
+
+    form(action="/endofdayCount" method="get")
+        input(type="submit" name="input" value="Order by count") 
+
+    - var total = 0
+    for user in results
+        li &nbsp; Name: #{user.name} // Price: #{user.price} // Count: #{user.count}
+        - total += parseFloat(user.price)
+
+    h2 total Sales = #{total.toFixed(2)}
+
+    form(action="/mainmenu" method="get")
+        input(type="submit" name="input" value="Back to Main Menu")

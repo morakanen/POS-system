@@ -295,6 +295,54 @@ router.get("/addToShopping2/:product?", async function (req, res, next) {
   });
 });
 
+router.get("/endofday", function (req, res, next) {
+  if (!loggedIn) {
+    res.redirect("login");
+    return;
+  }
+  connection.query("SELECT name, price, COUNT(*) as count FROM pastTransactions GROUP BY name, price order by count;", function(error, results){
+    if (error) throw error;
+    console.log(results);
+    res.render("endofday", {results});
+  });
+});
+
+
+router.get("/endofdayCount", function (req, res, next) {
+  if (!loggedIn) {
+    res.redirect("login");
+    return;
+  }
+  connection.query("SELECT name, price, COUNT(*) as count FROM pastTransactions GROUP BY name, price order by count DESC;", function(error, results){
+    if (error) throw error;
+    console.log(results);
+    res.render("endofday", {results});
+  });
+});
+
+router.get("/endofdayName", function (req, res, next) {
+  if (!loggedIn) {
+    res.redirect("login");
+    return;
+  }
+  connection.query("SELECT name, price, COUNT(*) as count FROM pastTransactions GROUP BY name, price order by name ;", function(error, results){
+    if (error) throw error;
+    console.log(results);
+    res.render("endofday", {results});
+  });
+});
+
+router.get("/endofdayPrice", function (req, res, next) {
+  if (!loggedIn) {
+    res.redirect("login");
+    return;
+  }
+  connection.query("SELECT name, price, COUNT(*) as count FROM pastTransactions GROUP BY name, price order by price DESC;", function(error, results){
+    if (error) throw error;
+    console.log(results);
+    res.render("endofday", {results});
+  });
+});
 
 
 router.get("/addToShopping/:product?", async function (req, res, next) {
@@ -443,6 +491,40 @@ router.get("/modifyproducts", function(req, res, next){
   });
 
 })
+
+router.get("/addproduct", function(req, res, next){
+  if (!loggedIn) {
+    res.redirect("login");
+    return;
+  }if (!admin) {
+    res.render("noaccess");
+    return;
+  }
+
+  res.render("addproduct");
+
+})
+
+router.post("/addproduct", function(req, res, next){
+  if (!loggedIn) {
+    res.redirect("login");
+    return;
+  }if (!admin) {
+    res.render("noaccess");
+    return;
+  }
+
+  console.log(req.body);
+
+  connection.query("INSERT INTO product(name, category, ageRestricted, price, twoForOne, percentOff) VALUES(?, ?, ?, ?, ?, ?)", [req.body.name, req.body.categories, Boolean(req.body.ageRestricted), req.body.price, Boolean(req.body.twoForOne), req.body.percentoff], function(error, result){
+    if (error) throw error;
+    connection.query("SELECT * from product", function (error, productInfo) {
+      if (error) throw error;
+      res.render("modifyproducts", {productInfo});
+    });
+  });
+})
+
 
 router.get("/changeName", function(req, res, next){
   if (!loggedIn) {
