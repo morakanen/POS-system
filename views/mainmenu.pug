@@ -2,27 +2,42 @@ extends layout
 
 block content
     link(rel='stylesheet', href='/stylesheets/mainmenu.css')
-    script(src="javascripts/mainmenu.js")
-    h1 #{hello};
     div(class="grid-containter")
         div(class="basket")
             - var total = 0
             ol(type=1) Basket
-                unless (basketinfo == undefined)
-                    for user in basketinfo
+                unless (shoppingBasketInfo == undefined)
+                    for user in shoppingBasketInfo
                         li &nbsp; Name: #{user.name} // Price: #{user.price} 
                         - total += parseFloat(user.price)
 
-
             h1 total = #{total.toFixed(2)}
 
-            form(action="#" method="post")
+            form(action="/clearBasket" method="post")
                 input(type="submit" name="input" value="Clear Basket")
-            form(action="#" method="post")
+            form(action="/undo" method="post")
                 input(type="submit" name="input" value="Undo")
+            form(action="/crazyTransaction" method="get")
+                input(type="text" name="name")
+                input(type="number" name="price" step=".01")
+                input(type="submit" name="input" value="Submit Un-listed Item")
+
+            form(action="/checkout" method="post")
+                input(type="submit" name="input" value="Payment")
+
+            if admin
+                form(action="/adminpanel" method="get")
+                    input(type="submit" name="adminpanel" value="Admin Panel")
+
         div(class="option-grid" id="options")
-            button(type="button" onclick="food()") Food
-            form(action="#" method="post")
-                input(type="submit" name="input" value="fish")
-            h1 hello worldd 
-            h1 dsjamkodnasjkdsanasnjmksd
+            div(class="categoriesDiv")
+                unless (categories == undefined)
+                    if productTime
+                        for categoryIterator in categories
+                            form(action="/addToShopping" method="get")
+                                input(type="submit" name="product" value=categoryIterator.name)
+                    else             
+                        for categoryIterator in categories
+                            form(action="/getByCategory" method="get")
+                                input(type="submit" name="category" value=categoryIterator.category)
+

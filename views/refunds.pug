@@ -1,0 +1,31 @@
+extends layout
+
+block content
+    h1 Refunds
+
+    if firstload
+        h2 enter valid receipt number 
+        form(action="/receiptNumberCheck" method="get")
+            input(type="text" name="percentOff" value="")
+            input(type="submit" name="input" value="Submit Receipt Number")
+    else
+        if errorFlag 
+            h2 Invalid receipt number :_ please try again.
+            form(action="/receiptNumberCheck" method="get")
+                input(type="text" name="percentOff" value="")
+                input(type="submit" name="input" value="Submit Receipt Number")
+        else
+            h2 Receipt number found.
+            - var total = 0
+            for user in results
+                li &nbsp; Name: #{user.name} // Price: #{user.price} 
+                    - total += parseFloat(user.price)
+
+            h2 total = #{total.toFixed(2)}
+
+        form(action="/refundRequest" method="get")
+            input(type="number" name="percentOff" step=".01")
+            input(type="submit" name="input" value="Submit Refund")
+        
+    form(action="/adminpanel" method="get")
+        input(type="submit" name="input" value="Back to Admin Panel")

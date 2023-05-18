@@ -3,12 +3,9 @@ var express = require('express');
 var path = require('path');
 var cookieParser = require('cookie-parser');
 var logger = require('morgan');
+var session = require('express-session')
 
 var indexRouter = require('./routes/index');
-var login = require('./routes/login');
-var user = require('./routes/user');
-var mainmenu = require('./routes/mainmenu');
-var checkout = require('./routes/checkout');
 
 var app = express();
 
@@ -23,10 +20,27 @@ app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
 
 app.use('/', indexRouter);
-app.use('/login', login);
-app.use('/user', user);
-app.use('/mainmenu', mainmenu);
-app.use('/checkout', checkout);
+app.use('/login', indexRouter);
+app.use('/checkout', indexRouter);
+app.use("/mainmenu", indexRouter);
+
+//admin
+app.use("/adminpanel", indexRouter);
+
+app.use("/userupdate", indexRouter);
+app.use("/adduser", indexRouter);
+
+app.use("/noaccess", indexRouter);
+
+app.use("/discounts", indexRouter);
+app.use("/modifyproducts", indexRouter);
+
+
+app.use(session({
+    secret: 'my secret',
+    saveUninitialized: true
+  }));
+
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {
