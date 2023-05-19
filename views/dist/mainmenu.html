@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title></title>
+    <link rel="stylesheet" href="/stylesheets/style.css">
+  </head>
+  <body>
+    <link rel="stylesheet" href="/stylesheets/mainmenu.css">
+    <div class="grid-containter">
+      <div class="basket">
+        <ol type="1">Basket
+        </ol>
+        <h1>total = 0.00</h1>
+        <form action="/clearBasket" method="post">
+          <input type="submit" name="input" value="Clear Basket">
+        </form>
+        <form action="/undo" method="post">
+          <input type="submit" name="input" value="Undo">
+        </form>
+        <form action="/crazyTransaction" method="get">
+          <input type="text" name="name" maxlength="30">
+          <input type="number" name="price" step=".01" max="100000">
+          <input type="submit" name="input" value="Submit Un-listed Item">
+        </form><br>
+        <form action="/checkout" method="post">
+          <input type="submit" name="input" value="Payment">
+        </form><br>
+        <form action="/endofday" method="get">
+          <input type="submit" name="input" value="End of Day Summary">
+        </form>
+        <form action="/login" method="get">
+          <input type="submit" name="input" value="Log Out">
+        </form><br>
+      </div>
+      <div class="option-grid" id="options">
+        <div class="categoriesDiv">
+        </div>
+      </div>
+    </div>
+  </body>
+</html>

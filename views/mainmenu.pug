@@ -49,6 +49,9 @@ block content
                         for categoryIterator in categories
                             form(action="/addToShopping" method="get")
                                 input(type="submit" name="product" value=categoryIterator.name)
+                        br
+                        form(action="/mainmenu" method="get")
+                            input(type="submit" name="product" value="Back")
                     else             
                         for categoryIterator in categories
                             form(action="/getByCategory" method="get")

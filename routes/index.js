@@ -625,7 +625,7 @@ router.get("/userupdate", function(req, res, next){
   }
 
 
-  connection.query("SELECT * from logininfo", function (error, userInfo) {
+  connection.query("SELECT * FROM logininfo", function (error, userInfo) {
     if (error) throw error;
     res.render("userupdate", {userInfo});
   });
@@ -755,9 +755,119 @@ router.get("/filterproducts", function(req, res, next){
     return;
   }
 
-  res.render("userupdate");
+  // Fetch data from the MySQL database
+  connection.query('SELECT * FROM product', (err, results) => {
+    if (err) {
+      console.error('Error querying database:', err);
+      return res.status(500).send('Error querying database');
+    }
+
+    // Render the data using the Pug template
+    res.render('productview', { data: results });
+  });
 
 })
+
+
+
+// Handle form submission
+router.post('/submit-form', (req, res) => {
+  const { name, price, ageRestricted,twoForOne,percentOff } = req.body;
+  
+  // Validate form data
+  if (!name || !price) {
+    return res.status(400).json({ error: 'Please fill out all fields.' });
+  }
+
+  // Convert agerestricted checkbox value to boolean
+  const isAgeRestricted = ageRestricted === 'on';
+
+  //convert twoforone into boolean
+  const istwoforone = twoForOne === 'on';
+
+  // Insert data into the database
+  connection.query('INSERT INTO product (name, price, agerestricted,twoForOne,percentOff) VALUES (?, ?, ?, ?,?,?)', [name, price, isAgeRestricted,istwoforone,percentOff], (err) => {
+    if (err) {
+      console.error(err);
+      return res.status(500).json({ error: 'An error occurred while submitting the form.' });
+    }
+    return res.status(200).json({ message: 'Form submitted successfully.' });
+    res.render("/main-menu")
+  });
+});
+
+// Handle form submission for updating data
+router.post('/update-form', (req, res) => {
+  console.log("Received data");
+  const { productId, name, price, ageRestricted ,twoForOne,percentOff } = req.body;
+  
+  // Validate form data
+  if (!productId || !name || !price) {
+    return res.status(400).json({ error: 'Please fill out all fields.' });
+  }
+
+  // Convert agerestricted checkbox value to boolean
+  const isAgeRestricted = ageRestricted === 'on';
+
+    //convert twoforone into boolean
+  const istwoforone = twoForOne === 'on';
+
+
+  // Update the data in the database
+  connection.query('UPDATE product SET name = ?, price = ?, agerestricted = ? ,twoForOne =?,percentOff=?  WHERE productId = ?', [name, price, isAgeRestricted,istwoforone,percentOff, productId,], (err) => {
+    if (err) {
+      console.error(err);
+      return res.status(500).json({ error: 'An error occurred while updating the form.' });
+    }
+    return res.status(200).json({ message: 'Form updated successfully.' });
+  });
+  
+});
+
+
+
+// Handle item filtering
+router.post('/filter-items', (req, res) => {
+  console.log("Received data for filter");
+  const { filter } = req.body;
+
+  // Perform the filtering based on the selected filter
+  let query;
+  if (filter === 'name') {
+    // Filter by item name
+    query = 'SELECT * FROM product ORDER BY name';
+  } else if (filter === 'price') {
+    // Filter by item price
+    query = 'SELECT * FROM product ORDER BY price';
+  } else {
+    // Invalid filter option
+    return res.status(400).json({ error: 'Invalid filter option.' });
+  }
+
+  // Execute the query
+  connection.query(query, (err, results) => {
+    if (err) {
+      console.error(err);
+      return res.status(500).json({ error: 'An error occurred while filtering the items.' });
+    }
+    // Return the filtered items as a response
+    return res.status(200).json({ items: results });
+  });
+});
+
+router.get('/productview', (req, res) => {
+  // Fetch data from the MySQL database
+  connection.query('SELECT * FROM product', (err, results) => {
+    if (err) {
+      console.error('Error querying database:', err);
+      return res.status(500).send('Error querying database');
+    }
+
+    // Render the data using the Pug template
+    res.render('productview', { data: results });
+  });
+});
+
 
 
 //-------------------------Refunds------------------------------------------//

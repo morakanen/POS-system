@@ -1,0 +1,62 @@
+extends layout
+
+block content
+
+  h1 Data from MySQL Database
+   div
+    <label for="filter">Filter:</label>
+    <select id="filter">
+    <option value="name">Name</option>
+    <option value="price">Price</option>
+    </select>
+    <button onclick="filterItems()">Filter</button>
+
+  table
+    thead
+      tr
+        th productId
+        th name
+        th over18?
+        th price
+        th Is 2 for 1
+        th percent off
+    tbody(id = "tableBody")
+      each item in data
+        tr
+          td= item.productId
+          td= item.name
+          td
+            | #{item.ageRestricted ? 'Yes' : 'No'}
+          td= item.price.toFixed(2)
+          td 
+            | | #{item.twoForOne ? 'Yes' : 'No'}
+          td=item.percentOff
+            button(type="button", onclick=`editItem(${item.productId})`) Edit 
+            tr(id=`editFormRow-${item.productId}`, style="display: none")
+              td(colspan="6")
+                form(id=`editForm-${item.productId}`)
+                  input(type="hidden" name="productId" value=item.productId)
+                  label(for=`name-${item.productId}`) Name:
+                  input(id=`name-${item.productId}`, type="text" name="name" value=item.name)
+                  br
+                  label(for=`price-${item.productId}`) Price:
+                  input(id=`price-${item.productId}`, type="number" name="price" step="0.01" value=item.price)
+                  br
+                  label(for=`ageRestricted-${item.productId}`) Age restricted:
+                  input(id=`ageRestricted-${item.productId}`, type="checkbox" name="ageRestricted" checked=item.ageRestricted)
+                  br
+                  label(for=`twoForOne-${item.productId}`) is two for one:
+                  input(id=`twoForOne-${item.productId}`, type="checkbox" name="twoForOne" checked=item.twoForOne)
+                  br
+                  label(for=`percentOff-${item.productId}`) percentOff:
+                  input(id=`percentOff-${item.productId}`, type="number" name="percentOff" value=item.percentOff)
+                  br
+                  button(type="button", onclick=`saveItem(${item.productId})`) Save
+  script(src="/javascripts/productviewcl.js")
+
+
+
+
+      
+
+
