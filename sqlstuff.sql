@@ -22,44 +22,6 @@ drop table logininfo;
 
 select * from logininfo;
 
-<<<<<<< HEAD
-
-create table menuitems(
-	itemId INT NOT NULL AUTO_INCREMENT PRIMARY KEY,
-    name VARCHAR(128),
-    stock INT,
-    ageRestricted BOOLEAN,
-    price DECIMAL(10,2)  NOT NULL
-);
-
-create table categories(
-	categoryId INT NOT NULL AUTO_INCREMENT PRIMARY KEY,
-	category VARCHAR(128)
-);
-
-insert into menuitems(name, price) 
-values  ("fish", 2.03),
-		("cheese", 23),
-        ("DOG", 0.03);
-        
-create table shoppingbasket(
-	shoppingItemId INT NOT NULL AUTO_INCREMENT PRIMARY KEY,
-    itemId INT NOT NULL,
-    foreign key (itemId) REFERENCES menuitems(itemid),
-    name VARCHAR(128),
-	stock INT,
-    ageRestricted BOOLEAN,
-    price DECIMAL(10,2)  NOT NULL
-);
-
-create table pastTransactions(
-	transactionID INT NOT NULL AUTO_INCREMENT PRIMARY KEY,
-    price DECIMAL(10, 2) NOT NULL
-);
-
-
-INSERT INTO shoppingbasket (itemId, name, stock, ageRestricted, price) SELECT * FROM menuitems WHERE name = "fish";
-=======
 create table categories(
 	category VARCHAR(128) NOT NULL PRIMARY KEY
 );
@@ -111,7 +73,6 @@ create table transactions(
 );
 
 drop table transactions;
->>>>>>> 781fb724348283fe8dd5b0a85bdfe686fac13019
 
 insert into transactions values();
 
@@ -154,9 +115,6 @@ drop table pastTransactions;
 select * from shoppingbasket;
 delete from shoppingbasket order by shoppingItemId desc limit 1;
 
-<<<<<<< HEAD
-select * from menuitems;
-=======
 SELECT COUNT(productId) AS numOfProduct FROM shoppingbasket WHERE name = "Fish";
 
 UPDATE shoppingbasket SET price = 0 ORDER BY shoppingItemID DESC LIMIT 1;
@@ -167,7 +125,6 @@ select * from product;
 DELETE FROM product WHERE name = "23";
 
 select * from categories;
->>>>>>> 781fb724348283fe8dd5b0a85bdfe686fac13019
 
 DELETE FROM shoppingbasket;
 

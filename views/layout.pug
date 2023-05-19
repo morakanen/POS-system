@@ -1,24 +1,7 @@
 doctype html
 html
   head
-    nav
-  ul
-    li
-      a(href='/mainmenu') checkout
-    li
-      .dropdown
-        button.dropbtn
-          | data
-          i.fa.fa-caret-down
-        .dropdown-content
-          a(href='/productview') products
-          a(href='PAGES/who.html') staff
-          a(href='PAGES/contact.html') past transactions
-    li
-      a(href='tel:+6666') refund 
-
     title= title
     link(rel='stylesheet', href='/stylesheets/style.css')
-    
   body
     block content
