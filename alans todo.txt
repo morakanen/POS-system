@@ -1,3 +1,0 @@
-pop up for adding products users and admins
-payment method
-new item to be sold (add new product same function)
